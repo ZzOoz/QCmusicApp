@@ -27,48 +27,38 @@ https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/1.PNG
 
 #### 	歌单界面
 
-![1566365848104](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566365848104.png)
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/2.PNG
 
-​	
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/3.PNG
 
-![1566365966032](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566365966032.png)
-
-![music5](C:\Users\hyt\Desktop\music5.gif)
-
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/music5.gif
 
 
 #### 热门mv
 
-![1566365930014](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566365930014.png)
 
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/4.PNG
 
-
-![music1](C:\Users\hyt\Desktop\music1.gif)
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/1.gif
 
 #### 热门歌手
 
-![music2](C:\Users\hyt\Desktop\music2.gif)
-
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/music2.gif
 #### 搜索界面
 
-​	![music3](C:\Users\hyt\Desktop\music3.gif)
-
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/music3.gif
 #### 登录界面
 
-![1566367143465](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566367143465.png)
-
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/5.PNG
 #### 每日推荐（需要登录）
 
-![1566367451777](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566367451777.png)
-
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/6.PNG
 #### 电台节目（播放）
 
-![music4](C:\Users\hyt\Desktop\music4.gif)
-
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/music4.gif
 #### 榜单排行榜（未完善）
 
-![1566367496793](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566367496793.png)
-
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/7.PNG
 ## 运行
 
 ```
