@@ -25,3 +25,9 @@
     }
   }
 </script>
+
+<style>
+  *{
+    touch-action: none;
+  }
+</style>

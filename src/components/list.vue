@@ -8,7 +8,7 @@
       <div class="list-wrapper">
         <div class="list-item" :class="{on: item.id == audio.id}" v-for="(item, index) in songList">
           <div class="left" @click="play(index)">
-            <span class="list-name">{{item.name}}</span> <span class="list-singer">&nbsp;-{{item.singer}}&nbsp;</span>
+            <span class="list-name">{{item.name}}</span> <span class="list-singer">&nbsp;——{{item.singer}}&nbsp;</span>
           </div>
           <span class="list-btn" @click="remove(index)">x</span>
           <hr class="mu-divider">

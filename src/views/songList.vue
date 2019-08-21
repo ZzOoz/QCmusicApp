@@ -30,7 +30,7 @@ export default {
     this.get()
   },
   mounted () {
-    this.scroller = this.$el
+    this.scroller = this.$el   // 将el赋值给scroller 只有scroller有值才能无限滚动
   },
   methods: {
     get () {

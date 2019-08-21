@@ -58,6 +58,7 @@
     </div>
 </template>
 <script>
+import Axios from 'axios'
 import { mapGetters, mapMutations } from 'vuex'
 import BottomSheet from '../components/list'
 import api from '../api'
@@ -99,7 +100,7 @@ export default {
       this.$router.go(-1)
       this.$store.commit('toggleDetail')
     },
-    changeTime (value) { // 改变播放时间事件
+    changeTime (value) { // 改变播放时间事件音乐的播放时间条
       var time = (value * this.durationTime) / 100
       this.$store.commit('changeTime', time)
       this.$store.commit('setChange', true)
@@ -110,7 +111,7 @@ export default {
         this.afterLrc = [{'txt': '这里显示歌词哦！'}]
         return
       }
-      this.$http.get(api.getLrc(id)).then((data) => {
+      Axios.get(api.getLrc(id)).then((data) => {
         // 1、先判断是否有歌词
         if (!data.lrc.lyric) {
           this.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}]
@@ -127,7 +128,7 @@ export default {
         this.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}]
       })
     },
-    getLrc () {
+    getLrc () {    // 获取歌词 并通过正则表达式来匹配时间转化为时间数字类型
       if (this.lyric) {
         var lyrics = this.lyric.split('\n')
         var lrcObj = []
@@ -137,21 +138,24 @@ export default {
         // 思路：1、把歌词进行处理以时间和歌词组成一个对象，放入afterLrc数组中
         // 2、在computed方法中根据当前的时间进行匹配歌词，然后查找在数据中的位置计算offset值
         for (var i = 0; i < lyrics.length; i++) {
-          var timeRegExpArr = lyrics[i].match(timeReg)
+          var timeRegExpArr = lyrics[i].match(timeReg)   // 将歌词数组中的字符串用正则表达是匹配，若有匹配的放入timeRegExpArr中
           if (!timeRegExpArr) continue
-          var txt = lyrics[i].replace(timeReg, '')
+          var txt = lyrics[i].replace(timeReg, '')  // 将时间替换成空获取歌词字符串
           // 处理时间
           for (var k = 0; k < timeRegExpArr.length; k++) {
             var array = {}
-            var t = timeRegExpArr[k]
+            var t = timeRegExpArr[k]  // t为每次匹配的字符串
             /*eslint-disable */
-            var min = Number(String(t.match(/\[\d*/i)).slice(1))
+            // 1.通过t.match匹配正则表达式返回数组，调用数组的slice方法取走后
+            // 2.通过String转化为基本类型 不是new String 所以并不是对象
+            // 3.通过Number转化为基本类型 不是new Number 所以不是对象
+            var min = Number(String(t.match(/\[\d*/i)).slice(1))  // 每次循环都会取走
             var sec = Number(String(t.match(/\:\d*/i)).slice(1))
             /*eslint-enable */
             var time = min * 60 + sec
             array.time = time
             array.txt = txt
-            lrcObj.push(array)
+            lrcObj.push(array)   // 每次添加array对象一个 每次都会有文本和时间数字类型
           }
         }
         this.afterLrc = lrcObj
@@ -180,7 +184,7 @@ export default {
       set: function (newVal) {
       }
     },
-    lrcOffset () {
+    lrcOffset () {   // 歌词偏移 到达某个时间点歌词向上偏移 transfrom3d 中的y轴
       if (this.afterLrc) {
         // 1、根据时间获得歌词
         var current = Math.round(this.currentTime)
@@ -291,7 +295,7 @@ export default {
       }
     }
 
-    // cd播放状态样式
+    // cd播放状态样式,stick播放针，播放时cd转动
     .cd-play {
       .stick {
         background-position-y: -.7rem;

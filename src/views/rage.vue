@@ -11,8 +11,42 @@
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
       </div>
+      <div class="options">
+        <mu-flexbox wrap="wrap" justify="space-around">
+          <mu-flexbox-item :basis="10">
+            <div>
+              <el-button icon="el-icon-date" circle type="success" plain class="button" @click="getRecommend"></el-button>
+              <span class="button-name">推荐</span>
+            </div>
+          </mu-flexbox-item>
+          <mu-flexbox-item :basis="10">
+            <div>
+              <el-button icon="el-icon-notebook-2" circle type="success" plain class="button"></el-button>
+              <span class="button-name">歌单</span>
+            </div>
+          </mu-flexbox-item>
+          <mu-flexbox-item :basis="10">
+            <div>
+              <el-button icon="el-icon-headset" circle type="success" plain class="button" @click="goRankList"></el-button>
+              <span class="button-name">排行</span>
+            </div>
+          </mu-flexbox-item>
+          <mu-flexbox-item :basis="10">
+            <div>
+              <el-button icon="el-icon-camera" circle type="success" plain class="button" @click="goDj"></el-button>
+              <span class="button-name">电台</span>
+            </div>
+          </mu-flexbox-item>
+          <mu-flexbox-item :basis="10">
+            <div>
+              <el-button icon="el-icon-video-camera" circle type="success" plain class="button"></el-button>
+              <span class="button-name">直播</span>
+            </div>
+          </mu-flexbox-item>
+        </mu-flexbox>
+      </div>
       <div class="wrapper">
-      <div class="g-title song-list">推荐歌单 <router-link :to="{path: '/index/songList'}">更多></router-link></div>
+      <div class="g-title song-list">推荐歌单 <router-link :to="{path: '/index/songList'}">更多</router-link></div>
       <mu-flexbox wrap="wrap" justify="space-around" class="box" :gutter="0">
         <mu-flexbox-item basis="28%" class="item" :key="item.id" v-for="item in playList">
           <router-link :to="{name: 'playListDetail',params: { id: item.id, name: item.name, coverImg: item.picUrl, creator: item.copywriter, count: item.playCount, desc: item.description }}">
@@ -22,12 +56,14 @@
           </router-link>
         </mu-flexbox-item>
       </mu-flexbox>
-        <div class="g-title mv">推荐MV <router-link :to="{}">更多></router-link></div>
+        <div class="g-title mv">推荐MV <router-link :to="{path:'/index/mvList'}">更多</router-link></div>
         <mu-flexbox wrap="wrap" justify="space-between" class="box" :gutter="0">
           <mu-flexbox-item basis="48%" class="mv-item" v-for="item in mvList" :key="item.artistId">
+            <router-link :to="{name:'mvDetail',params:{id:item.id,name:item.name,count: item.playCount}}">
             <img class="img-response" :src="item.picUrl">
             <div class="mv-name">{{item.name}}</div>
             <div class="mv-author">{{item.artistName}}</div>
+            </router-link>
           </mu-flexbox-item>
         </mu-flexbox>
       </div>
@@ -62,7 +98,22 @@
     background: url('../../static/banner-item-load.png') no-repeat;
     background-size: cover;
   }
-
+  .options{
+    .el-button{
+      margin: 8px 0 0 10px;
+    }
+    .button-name{
+      overflow : hidden;
+      font-size: 12px;
+      height: 1.7rem;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      padding: 2px 0px 0px 18px;
+      height: 20px;
+    }
+  }
   // 推荐歌单
   .song-list {
     background: url("../../static/aei.png") no-repeat left center;
@@ -153,6 +204,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    color: black;
   }
 
   @keyframes rotating {
@@ -165,13 +217,17 @@
   }
 </style>
 <script>
+import {mapState} from 'vuex'
+import Axios from 'axios'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import api from '../api'
+import MuFlexbox from 'muse-ui/src/flexbox/flexbox'
+import MuFlexboxItem from 'muse-ui/src/flexbox/flexboxItem'
 export default {
   data () {
     return {
-      swiperOption: {
+      swiperOption: { // 轮播参数选项
         pagination: '.swiper-pagination',
         paginationClickable: true
       },
@@ -181,7 +237,12 @@ export default {
       mvList: []
     }
   },
+  computed: {
+    ...mapState(['DailySongList', 'userInfo'])
+  },
   components: {
+    MuFlexboxItem,
+    MuFlexbox,
     swiper,
     swiperSlide
   },
@@ -189,20 +250,32 @@ export default {
     this.loadData()
   },
   methods: {
-    /**
-     * 加载所有数据
-     * @author javaSwing
-     */
     loadData () {
-      let personSongList = this.$http.get(api.getPersonalized())
-      let bannerList = this.$http.get(api.getBannerList())
-      let personMVList = this.$http.get(api.getPersonalizedMV())
+      let personSongList = Axios.get(api.getPersonalized())
+      let bannerList = Axios.get(api.getBannerList())
+      let personMVList = Axios.get(api.getPersonalizedMV())
       Promise.all([personSongList, bannerList, personMVList]).then(data => {
-        this.playList = data[0].result.length > 6 && data[0].result.slice(0, 6)
+        this.playList = data[0].result.length > 6 && data[0].result.slice(0, 6)  // 从已有数组返回指定数组
         this.bannerList = data[1].banners
         this.mvList = data[2].result.length > 6 ? data[2].result.slice(0, 6) : data[2].result
         this.isloading = false
       })
+    },
+    getRecommend () {
+      if (this.userInfo.code === 200) {
+        this.$router.push('/recommend')
+      } else {
+        this.$message({
+          type: 'warning',
+          message: '只有登录才能享有'
+        })
+      }
+    },
+    goRankList () {
+      this.$router.push('/rankList')
+    },
+    goDj () {
+      this.$router.push('/userDj')
     }
   },
   filters: {

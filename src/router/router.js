@@ -19,8 +19,8 @@ const router = new VueRouter({
         component: require('../views/songList')
       },
       {
-        path: 'leaderBoard',
-        component: require('../views/leaderBoard')
+        path: 'mvList',
+        component: require('../views/mvList')
       },
       {
         path: 'hotSinger',
@@ -35,6 +35,42 @@ const router = new VueRouter({
     path: '/playListDetail/:id',
     name: 'playListDetail',
     component: require('../views/playListDetail')
+  }, {
+    path: '/search',
+    name: 'search',
+    component: require('../views/search')
+  }, {
+    path: '/login',
+    name: 'login',
+    component: require('../views/login')
+  }, {
+    path: '/searchResult',
+    name: 'searchResult',
+    component: require('../views/searchResult')
+  }, {
+    path: '/recommend',
+    name: 'recommend',
+    component: require('../views/recommend')
+  }, {
+    path: '/rankList',
+    name: 'rankList',
+    component: require('../views/rankList')
+  }, {
+    path: '/mvDetail/:id',
+    name: 'mvDetail',
+    component: require('../views/mvDetail')
+  }, {
+    path: '/hotSingerList/:id',
+    name: 'hotSingerList',
+    component: require('../views/hotSingerList')
+  }, {
+    path: '/userDj',
+    name: 'userDj',
+    component: require('../views/userDj')
+  }, {
+    path: '/djDetail/:id',
+    name: 'djDetail',
+    component: require('../views/djDetail')
   }, {
     path: '*', redirect: '/index/rage'
   }]

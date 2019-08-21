@@ -1,23 +1,74 @@
-# netease-clound-webapps
+## 青草音乐移动app
 
-> 这是一个用VUEJS写高仿网易云音乐的webapp，只实现了APP的核心功能，这个项目会长期进行更新。
+这是一个使用vue全家桶仿网易云音乐的app，如果以后学习到更多知识会继续在不能webapp中继续实现
 
-[在线地址](http://www.javaswing.cn/)
+## 技术栈
 
-### 技术栈
-- 传说中的VUE全家桶(vue vue-router vuex)
-- axios
-- Muse-UI(一个基于Vue2.x的material design 风格UI框架)
+​	vue作为技术框架、vue-router实现单页应用、vuex实现数据状态管理
 
-## 运行截图
-![首页](https://github.com/javaSwing/NeteaseCloudWebApp/raw/master/screenshots/1.png)
-![详情](https://github.com/javaSwing/NeteaseCloudWebApp/raw/master/screenshots/2.png)
-![动图](https://github.com/javaSwing/NeteaseCloudWebApp/raw/master/screenshots/3.gif)
-![动图](https://github.com/javaSwing/NeteaseCloudWebApp/raw/master/screenshots/4.gif)
+​	同时使用element-ui和muse-ui作为UI框架搭建页面
 
-## 安装运行（Build Setup）
+​	使用axios接收调用后台api拿到响应数据
 
-``` bash
+​	stylus预编译、图片懒加载lazyload
+
+
+
+## 运行截图（功能）
+
+
+
+#### 发现界面
+
+​	![1566365800862](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566365800862.png)
+
+#### 	歌单界面
+
+![1566365848104](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566365848104.png)
+
+​	
+
+![1566365966032](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566365966032.png)
+
+![music5](C:\Users\hyt\Desktop\music5.gif)
+
+
+
+#### 热门mv
+
+![1566365930014](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566365930014.png)
+
+
+
+![music1](C:\Users\hyt\Desktop\music1.gif)
+
+#### 热门歌手
+
+![music2](C:\Users\hyt\Desktop\music2.gif)
+
+#### 搜索界面
+
+​	![music3](C:\Users\hyt\Desktop\music3.gif)
+
+#### 登录界面
+
+![1566367143465](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566367143465.png)
+
+#### 每日推荐（需要登录）
+
+![1566367451777](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566367451777.png)
+
+#### 电台节目（播放）
+
+![music4](C:\Users\hyt\Desktop\music4.gif)
+
+#### 榜单排行榜（未完善）
+
+![1566367496793](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566367496793.png)
+
+## 运行
+
+```
 # install dependencies
 npm install
 
@@ -37,20 +88,10 @@ npm run e2e
 npm test
 ```
 
-## TODO
-
-- [ ]  实现音乐播放器的播放模式调整
-- [ ]  搜索模块
-
-## 鸣谢
-
-此网站提供的API: [https://api.imjad.cn/cloudmusic/](https://api.imjad.cn/cloudmusic/) ,此接口的说明请到这里[查看](https://api.imjad.cn/cloudmusic/index.html)
-
-歌单列表部分为自己提供，在别一个项目中[MusicApi](https://github.com/javaSwing/MusicAPI)
-
-[NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi) NodeJS 项目
 
 
-## License
+## 最后
 
-[MIT](https://github.com/javaSwing/NeteaseCloudWebApp/blob/master/LICENSE)
+此app是通过网易云提供的api基于node后台实现的
+
+网址：https://github.com/Binaryify/NeteaseCloudMusicApi

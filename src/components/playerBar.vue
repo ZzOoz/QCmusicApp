@@ -1,8 +1,10 @@
 <template>
+<!--  全局引入在App.vue-->
   <div class="foot">
     <div class="player-mini">
       <div class="mini-content">
-       <audio :src="audio.location" @timeupdate="updateTime" @canplay="canPlaySong" @error="loadError" @ended="next" id="audioPlay"/>
+        <audio :src="audio.location" @timeupdate="updateTime" @canplay="canPlaySong" @error="loadError" @ended="next" id="audioPlay" />
+
         <div class="cover" @click="showDetail">
           <mu-circular-progress v-show="loading" :size="30"/>
           <img class="xmplogo" :src="audio.albumPic + '?param=100y100'" v-show="!loading" :alt="audio.name">
@@ -55,7 +57,7 @@ export default {
       this.$store.commit('play')
       document.getElementById('audioPlay').play()
     },
-    toggleStatus () {
+    toggleStatus () {  // 播放按钮
       if (this.playing) {
         document.getElementById('audioPlay').pause()
         this.$store.commit('pause')
@@ -66,12 +68,11 @@ export default {
     },
     // 文件加载出错
     loadError () {
-      // 判断是第一次打开程序还是后来程序加载的路径有错根据src是否为空
+      // 判断是第一次打开程序还是后来程序加载的路径有错根据src是否为空  currentSrc：熟悉返回当前音频/视频的 URL。
       if (document.getElementById('audioPlay').currentSrc) {
         // this.$refs.toast.show('歌曲路径加载出错')
         this.loading = false
         this.$store.commit('closeLoading')
-        // 还要把playbar重置下 TODO
       } else {
         console.log('APP 程序第一次加载')
       }
@@ -84,18 +85,26 @@ export default {
     updateTime () {
       var vm = this
       var myaudio = document.getElementById('audioPlay')
+      // currentTime 属性设置或返回音频/视频播放的当前位置（以秒计）。
       var time = parseInt(myaudio.currentTime)
       // 防止在未加载完成时，切歌出现的错误
       // Failed to execute 'end' on 'TimeRanges':
       // 由onprogress 更改为 onsuspend事件。参考：http://www.cnblogs.com/tianma3798/p/6038908.html
-      myaudio.onsuspend = function () {
+      myaudio.onsuspend = function () {  // onsuspend事件：在媒介数据完全加载之前不论何种原因终止取回媒介数据时运行的脚本。
         var timeRange = myaudio.buffered
         if (timeRange.length > 0 && myaudio.duration > 0) {
+          // buffered 属性返回 TimeRanges 对象。
+          // TimeRanges 对象表示音频的缓冲区间。
+          // 缓冲范围指的是已缓冲音视频的时间范围。如果用户在音视频中跳跃播放，会得到多个缓冲范围。
+          // start(index)  获得某个已缓冲范围的开始位置
+          // end(index)  获得某个已缓冲范围的结束位置
+          // 下面的代码表示触发mutation中的updateBufferedTime,给一个已经获得的最后缓存位置作为参数
           vm.$store.commit('updateBufferedTime', parseInt(myaudio.buffered.end(0)))
         }
       }
+      // duration 属性返回当前音频的长度
       vm.$store.commit('updateDurationTime', parseInt(myaudio.duration))
-      if (this.change) {
+      if (this.change) {  // 如果在时间轴上跳跃播放则触发setChange并且改变当前时间
         myaudio.currentTime = this.tmpCurrentTime
         this.$store.commit('setChange', false)
       } else {
@@ -105,6 +114,7 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'djProgram',
       'audio',
       'change',
       'playing',
@@ -117,7 +127,7 @@ export default {
   }
 }
 </script>
-<style lang="less" scopoed>
+<style lang="less" scoped>
   @import "../assets/theme.less";
   .foot {
     width: 100%;

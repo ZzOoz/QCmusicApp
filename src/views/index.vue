@@ -2,13 +2,13 @@
     <div>
       <div class="fixed-bar">
       <mu-appbar>
-        <div class="logo" slot="left"></div>
-        <mu-icon-button icon='search'  slot="right"/>
+        <div class="logo" slot="left">青草音乐</div>
+        <mu-icon-button icon='search'  slot="right" @click="search"/>
       </mu-appbar>
       <mu-tabs :value="activeTab" @change="handleTabChange" class="view-tabs">
-        <mu-tab value="rage" title="时下流行"/>
+        <mu-tab value="rage" title="发现"/>
         <mu-tab value="songList" title="歌单"/>
-        <mu-tab value="leaderBoard" title="排行榜"/>
+        <mu-tab value="mvList" title="热门Mv"/>
         <mu-tab value="hotSinger" title="热门歌手"/>
       </mu-tabs>
       </div>
@@ -38,9 +38,10 @@
     watch: {
       '$route' (to, from) {
         const path = to.path
+        console.log(path)
         var tmpArr = path.split('/')
         if (tmpArr[1] === 'index') {
-          this.handleTabChange(tmpArr[2])
+          this.handleTabChange(tmpArr[2])  // 获取path后可以将index后面的url地址传给handleTabChange
         }
       }
     },
@@ -48,6 +49,9 @@
       handleTabChange (val) {
         this.activeTab = val
         this.$router.push({ path: '/index/' + val })
+      },
+      search () {
+        this.$router.push({path: '/search'})
       }
     },
     computed: {
@@ -62,8 +66,10 @@
   .logo {
     width: 150px;
     height: 48px;
-    background: url("../../static/logo.png") no-repeat left center;
-    background-size: cover;
+    font-size: 25px;
+    line-height: 48px;
+    margin-left: 12px;
+    font-family: Roboto, Lato, sans-serif;
   }
   .view-tabs {
     background-color: #fff;

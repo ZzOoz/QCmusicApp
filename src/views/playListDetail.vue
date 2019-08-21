@@ -1,6 +1,6 @@
 <template>
     <div class="playList" :class="{view: songList.length > 0}">
-        <div class="fixed-title" :style="{'background': 'rgba(206, 61, 62, '+ opacity +')'}" style="transition: opacity .1s;">
+        <div class="fixed-title" :style="{'background': 'rgba(39, 223, 152, '+ opacity +')'}" style="transition: opacity .1s;">
             <mu-appbar>
             <mu-icon-button icon='arrow_back' @click="back" slot="left"/>
             <div class="play-title">
@@ -50,7 +50,7 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      coverImgUrl: '../../static/default_cover.png',
+      coverImgUrl: '../../stic/default_cover.png',
       name: '歌单标题',
       id: 0,
       fname: '歌单',
@@ -68,8 +68,9 @@ export default {
   },
   // 解除keep-alive的缓存
   beforeRouteEnter: (to, from, next) => {
+    // console.log(to)
     next(vm => {
-      // 根据传过来的ID是否一样，判断加载
+      // 根据传过来的ID是否一样，判断加载 vm.id 为0
       if (parseInt(to.params.id) !== parseInt(vm.id)) {
         vm.get()
       }
@@ -94,7 +95,7 @@ export default {
       }
     })
   },
-  // 路由离开时清除onscroll事件
+  // 路由离开时清除onscroll事件防止其他组件调用
   beforeRouteLeave: (to, from, next) => {
     window.onscroll = null
     next()
@@ -107,17 +108,21 @@ export default {
       this.isloading = true
       this.$http.get(api.getPlayListDetail(this.$route.params.id)).then(data => {
         this.list = data.playlist.tracks
+        console.log(this.list)
         this.isloading = false
       }).catch((error) => {
         console.log('加载歌单信息出错:' + error)
       })
     },
     change (val) {
-      this.value = val
+      this.value = val  // 触发事件change时list中的value值等于list-item中的id呈现出被选中的状态
     },
     playAudio (song) {
-      document.getElementById('audioPlay').pause()
-      this.$store.commit('pause')
+      console.log('触发')
+      // document.getElementById('audioPlay').pause()
+      // this.$store.commit('pause')
+      // document.getElementById('audioPlay').play()
+      // this.$store.commit('play')
       var audio = {}
       audio.id = song.id  // id
       audio.singer = song.ar[0].name // 演唱者
