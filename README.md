@@ -27,7 +27,7 @@ https://github.com/ZzOoz/QCmusicApp/raw/master/image-folder/1.PNG
 
 #### 	歌单界面
 
-![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/2.PNG
+![image](https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/2.PNG)
 
 ![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/3.PNG
 
