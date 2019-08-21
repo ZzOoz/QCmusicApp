@@ -20,27 +20,47 @@
 
 #### 发现界面
 
-![image]https://github.com/ZzOoz/QCmusicApp/raw/master/images_folder/1.PNG
-
-![image]https://github.com/ZzOoz/QCmusicApp/raw/master/images_folder/2.PNG
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/1.PNG
 
 #### 
 
 #### 	歌单界面
 
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/2.PNG
+
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/3.PNG
+
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/music5.gif
+
 #### 热门mv
+
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/4.PNG
+
+
 
 #### 热门歌手
 
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/music2.gif
+
 #### 搜索界面
+
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/music3.gif
 
 #### 登录界面
 
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/5.PNG
+
 #### 每日推荐（需要登录）
+
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/6.PNG
 
 #### 电台节目（播放）
 
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/music4.gif
+
 #### 榜单排行榜（未完善）
+
+![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/7.PNG
 
 ## 运行
 
