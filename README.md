@@ -20,8 +20,8 @@
 
 #### 发现界面
 
-​	![image]https://github.com/ZzOoz/QCmusicApp/raw/master/images_folder/1.PNG
-  ![image]https://github.com/ZzOoz/QCmusicApp/raw/master/images_folder/2.PNG
+​	![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/1.PNG
+  ![image]https://github.com/ZzOoz/QCmusicApp/blob/master/image-folder/2.PNG
 #### 
 
 #### 
