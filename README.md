@@ -20,7 +20,11 @@
 
 #### 发现界面
 
-​	![1566365800862](C:\Users\hyt\AppData\Roaming\Typora\typora-user-images\1566365800862.png)
+​	![image]https://github.com/ZzOoz/QCmusicApp/raw/master/images_folder/1.PNG
+​	![image]https://github.com/ZzOoz/QCmusicApp/raw/master/images_folder/2.PNG
+#### 
+
+#### 
 
 #### 	歌单界面
 
