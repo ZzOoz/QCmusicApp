@@ -1,4 +1,4 @@
-const _baseUrl = 'http://localhost:3000'
+const _baseUrl = '/api'
 const _baseUrl2 = 'https://api.imjad.cn/cloudmusic/'
 export default {
   /***
@@ -6,6 +6,9 @@ export default {
    */
   phoneLogin ({phone, password}) {
     return `${_baseUrl}/login/cellphone?phone=${phone}&password=${password}`
+  },
+  phoneLogin2 () {
+    return `${_baseUrl}/login/cellphone`
   },
   /**
    * 获取首页Banner图片数据

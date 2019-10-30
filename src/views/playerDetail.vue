@@ -58,7 +58,7 @@
     </div>
 </template>
 <script>
-import Axios from 'axios'
+import Request from '../api/request'
 import { mapGetters, mapMutations } from 'vuex'
 import BottomSheet from '../components/list'
 import api from '../api'
@@ -111,13 +111,13 @@ export default {
         this.afterLrc = [{'txt': '这里显示歌词哦！'}]
         return
       }
-      Axios.get(api.getLrc(id)).then((data) => {
+      Request(api.getLrc(id)).then((data) => {
         // 1、先判断是否有歌词
         if (!data.lrc.lyric) {
           this.afterLrc = [{'txt': '(⊙０⊙) 暂无歌词'}]
         } else {
           this.lyric = data.lrc.lyric
-          this.getLrc()
+          this.getLrc()   // 执行本组件中的getLrc方法
         }
       }, (res) => {
         console.log('lrc fail')

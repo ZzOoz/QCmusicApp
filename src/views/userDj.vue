@@ -81,13 +81,14 @@
 </template>
 
 <script>
-  import Axios from 'axios'
   import api from '../api'
   import 'swiper/dist/css/swiper.css'
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
   import {mapState} from 'vuex'
   import MuFlexboxItem from 'muse-ui/src/flexbox/flexboxItem'
   import MuFlexbox from 'muse-ui/src/flexbox/flexbox'
+  import Request from '../api/request'
+
   export default {
     name: 'userDj',
     components: {
@@ -122,10 +123,10 @@
     methods: {
       loadDjInfo () {
         this.isLoading = true
-        let Banner = Axios.get(api.getBannerList())
-        let DjRecommend = Axios.get(api.getRecommendDj())
-        let DjDaildy = Axios.get(api.getDjDaildyPrefect())
-        let DjPay = Axios.get(api.getPayDjInfo(6, 0))
+        let Banner = Request(api.getBannerList())
+        let DjRecommend = Request(api.getRecommendDj())
+        let DjDaildy = Request(api.getDjDaildyPrefect())
+        let DjPay = Request(api.getPayDjInfo(6, 0))
         Promise.all([Banner, DjRecommend, DjDaildy, DjPay]).then((data) => {
           this.bannerList = data[0].banners
           this.djRecommendList = data[1].djRadios.length > 6 ? data[1].djRadios.splice(0, 6) : data[1].djRadios

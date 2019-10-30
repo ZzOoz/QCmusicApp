@@ -133,14 +133,14 @@ const store = new Vuex.Store({
     },
     playNext (state) { // 播放下一曲
       state.currentIndex++
-      if (state.currentIndex > state.songList.length) {
+      if (state.currentIndex > state.songList.length) { // 当下标超出歌曲列表的时候会回到第一首
         state.currentIndex = 1
       }
       state.audio = state.songList[state.currentIndex - 1]
     },
     playPrev (state) { // 播放上一曲
       state.currentIndex--
-      if (state.currentIndex < 1) {
+      if (state.currentIndex < 1) { // 当下标在第一首的时候再次点击上一首歌会到达列表中最后一首歌曲的位置
         state.currentIndex = state.songList.length
       }
       state.audio = state.songList[state.currentIndex - 1]
@@ -168,8 +168,39 @@ const store = new Vuex.Store({
   // 异步的数据操作
   actions: {
     // 获取用户信息
+    // getPhoneUserInfo: function ({commit, state}, {phone, password}) {
+    //   Axios.get(api.phoneLogin({phone, password})).then((data) => {
+    //     const userInfo = data
+    //     commit('recordUserInfo', {userInfo})
+    //   }).catch((error) => {
+    //     if (error.response) {
+    //       // The request was made and the server responded with a status code
+    //       // that falls out of the range of 2xx
+    //       // console.log(error.response.data)
+    //       // console.log(error.response.status)
+    //       // console.log(error.response.headers)
+    //       if (error.response.status === 502) {
+    //         window.alert('密码错误')
+    //       } else if (error.response.status === 501) {
+    //         window.alert('账号错误')
+    //       } else {
+    //         window.alert('404请求出错')
+    //       }
+    //     } else if (error.request) {
+    //       // The request was made but no response was received
+    //       // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+    //       // http.ClientRequest in node.js
+    //       console.log(error.request)
+    //     } else {
+    //       // Something happened in setting up the request that triggered an Error
+    //       console.log('Error', error.message)
+    //     }
+    //     console.log(error.config)
+    //   })
+    // },
     getPhoneUserInfo: function ({commit, state}, {phone, password}) {
-      Axios.get(api.phoneLogin({phone, password})).then((data) => {
+      Axios.post(api.phoneLogin2(), {phone: phone, password: password}).then((data) => {
+        console.log('post请求成功')
         const userInfo = data
         commit('recordUserInfo', {userInfo})
       }).catch((error) => {

@@ -9,6 +9,9 @@ const router = new VueRouter({
   routes: [{
     path: '/index',
     component: require('../views/index'),
+    meta: {
+      title: '首页'
+    },
     children: [
       {
         path: 'rage',
@@ -30,6 +33,9 @@ const router = new VueRouter({
   }, {
     name: 'playerDetail',
     path: '/playerDetail/:id',
+    meta: {
+      title: '搜索'
+    },
     component: require('../views/playerDetail')
   }, {
     path: '/playListDetail/:id',
@@ -38,6 +44,9 @@ const router = new VueRouter({
   }, {
     path: '/search',
     name: 'search',
+    meta: {
+      title: '搜索'
+    },
     component: require('../views/search')
   }, {
     path: '/login',
@@ -75,5 +84,11 @@ const router = new VueRouter({
     path: '*', redirect: '/index/rage'
   }]
 })
+
+// router.beforeEach((to, from, next) => {
+//   console.log(to)
+//   document.title = to.matched[0].meta.title
+//   next()
+// })
 
 export default router

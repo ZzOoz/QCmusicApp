@@ -111,7 +111,7 @@
 </style>
 
 <script>
-  import Axios from 'axios'
+  import Request from '../api/request'
   import api from '../api'
   import MuFlexbox from 'muse-ui/src/flexbox/flexbox'
   import MuFlexboxItem from 'muse-ui/src/flexbox/flexboxItem'
@@ -163,7 +163,7 @@
       },
       getSearchInfo (keywords) {
         if (keywords != null) {
-          Axios.get(api.getSearch(keywords)).then((data) => {
+          Request(api.getSearch(keywords)).then((data) => {
             console.log(data)
             if (data.code === 200) {
               this.isResult = true
@@ -187,7 +187,7 @@
         }
       },
       getHotSearchList () {  // 获取热搜排行榜信息
-        Axios.get(api.getHotSearchList()).then((data) => {
+        Request(api.getHotSearchList()).then((data) => {
           console.log(data)
           var hotList = data.data
           for (let i = 0; i < hotList.length; i++) {

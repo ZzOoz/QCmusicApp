@@ -38,7 +38,8 @@
         line-height:55px
 </style>
 <script>
-  import Axios from 'axios'
+  // import Axios from 'axios'
+  import Request from '../api/request'
   import api from '../api'
   export default {
     name: 'hotSinger',
@@ -55,9 +56,17 @@
       this.getHotSingerList()
     },
     methods: {
+      // getHotSingerList () {
+      //   this.isLoading = true
+      //   Axios.get(api.getHotSingerList(50)).then((data) => {
+      //     this.hotSingerList = data.artists
+      //     console.log(this.hotSingerList)
+      //     this.isLoading = false
+      //   })
+      // }
       getHotSingerList () {
         this.isLoading = true
-        Axios.get(api.getHotSingerList(50)).then((data) => {
+        Request(api.getHotSingerList(50)).then((data) => {
           this.hotSingerList = data.artists
           console.log(this.hotSingerList)
           this.isLoading = false

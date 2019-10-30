@@ -64,7 +64,7 @@
 
 </style>
 <script>
-import Axios from 'axios'
+import Request from '../api/request'
 import api from '../api'
 import MuFlexbox from 'muse-ui/src/flexbox/flexbox'
 import MuFlexboxItem from 'muse-ui/src/flexbox/flexboxItem'
@@ -93,7 +93,7 @@ export default {
   methods: {
     getMvInfo () {
       this.isloading = true  // isloading
-      Axios.get(api.getNewMv(30)).then((data) => {
+      Request(api.getNewMv(30)).then((data) => {
         console.log(data)
         var list = data.data
         for (let i = 0; i < list.length; i++) {

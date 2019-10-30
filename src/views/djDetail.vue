@@ -32,7 +32,7 @@
     </div>
     <div class="Dj_Detail_content">
       <div class="add-all">
-        <mu-flat-button label="播放全部" class="demo-flat-button" icon="add_circle_outline" @click=""/>
+        <mu-flat-button label="播放全部" class="demo-flat-button" icon="add_circle_outline" />
         <mu-divider/>
       </div>
       <mu-list>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-  import Axios from 'axios'
+  import Request from '../api/request'
   import api from '../api'
   import Tabs from '../components/Tabs'
   export default {
@@ -88,7 +88,7 @@
     },
     methods: {
       getDjDetail () {
-        Axios.get(api.getDjDetail(this.$route.params.id)).then(data => {
+        Request(api.getDjDetail(this.$route.params.id)).then(data => {
           this.DjDetailInfo = data.djRadio
         })
       },

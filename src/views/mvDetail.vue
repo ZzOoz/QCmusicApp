@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import Axios from 'axios'
+  import Request from '../api/request'
   import api from '../api'
   import MuFlexbox from 'muse-ui/src/flexbox/flexbox'
   import MuFlexboxItem from 'muse-ui/src/flexbox/flexboxItem'
@@ -99,7 +99,7 @@
     methods: {
       getMvUrl () {
         this.isLoading = true
-        Axios.get(api.getMvDate(this.$route.params.id)).then((data) => {
+        Request(api.getMvDate(this.$route.params.id)).then((data) => {
           this.mvInfo = data.data
           this.mvUrl = this.mvInfo.url
           console.log(this.mvUrl)
@@ -108,7 +108,7 @@
       },  // 获取单只mv的播放地址
       getRelateMvInfo () {
         this.isLoading = true  // isloading
-        Axios.get(api.getRelateMv(this.$route.params.id)).then((data) => {
+        Request(api.getRelateMv(this.$route.params.id)).then((data) => {
           console.log(data)
           var list = data.data
           for (let i = 0; i < list.length; i++) {

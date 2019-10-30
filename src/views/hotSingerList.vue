@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import Axios from 'axios'
+  import Request from '../api/request'
   import api from '../api'
   export default {
     name: 'hotSingerList',
@@ -57,7 +57,7 @@
     methods: {
       getSingerSong () {
         this.isLoading = true
-        Axios.get(api.getSingerSong(this.$route.params.id)).then((data) => {
+        Request(api.getSingerSong(this.$route.params.id)).then((data) => {
           this.singerSongList = data.hotSongs
           this.singerInfo = data.artist
           console.log(this.singerSongList)

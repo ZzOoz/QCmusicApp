@@ -218,7 +218,7 @@
 </style>
 <script>
 import {mapState} from 'vuex'
-import Axios from 'axios'
+import Request from '../api/request'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import api from '../api'
@@ -251,9 +251,9 @@ export default {
   },
   methods: {
     loadData () {
-      let personSongList = Axios.get(api.getPersonalized())
-      let bannerList = Axios.get(api.getBannerList())
-      let personMVList = Axios.get(api.getPersonalizedMV())
+      let personSongList = Request(api.getPersonalized())
+      let bannerList = Request(api.getBannerList())
+      let personMVList = Request(api.getPersonalizedMV())
       Promise.all([personSongList, bannerList, personMVList]).then(data => {
         this.playList = data[0].result.length > 6 && data[0].result.slice(0, 6)  // 从已有数组返回指定数组
         this.bannerList = data[1].banners

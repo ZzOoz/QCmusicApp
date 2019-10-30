@@ -70,7 +70,7 @@
 </style>
 
 <script>
-  import Axios from 'axios'
+  import Request from '../api/request'
   import api from '../api'
   export default {
     name: 'rankList',
@@ -97,7 +97,7 @@
     methods: {
       getRankListDetail () {
         for (let i = 0; i < 10; i++) {
-          Axios.get(api.getRankListDetail(i)).then((data) => {
+          Request(api.getRankListDetail(i)).then((data) => {
             const listDetail = data.playlist
             this.rankListDetail.push(listDetail[i])
           })
@@ -105,7 +105,7 @@
       },
       getRankList () {
         this.isLoading = true
-        Axios.get(api.getRankList()).then((data) => {
+        Request(api.getRankList()).then((data) => {
           console.log(data)
           const list = data.list
           for (let i = 0; i < 10; i++) {
