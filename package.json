@@ -13,7 +13,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.21.1",
     "better-scroll": "^1.15.2",
     "element-ui": "^2.11.1",
     "fastclick": "^1.0.6",
